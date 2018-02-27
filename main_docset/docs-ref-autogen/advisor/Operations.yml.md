@@ -1,4 +1,4 @@
-# `management.azure.com.advisor.operations`
+ `management.azure.com.advisor.operations`
 
 ## `operations[uid="management.azure.com.advisor.operations.list"]/summary`
 Lists all the available Advisor REST API operations.
