@@ -1,0 +1,105 @@
+### YamlMime:RESTOperation
+uid: management.azure.com.advisor.suppressions.create
+name: Create
+service: Advisor
+groupName: Suppressions
+apiVersion: 2017-03-31
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+- content: PUT https://management.azure.com/{resourceUri}/providers/Microsoft.Advisor/recommendations/{recommendationId}/suppressions/{name}?api-version=2017-03-31
+uriParameters:
+- name: resourceUri
+  in: path
+  isRequired: true
+  types:
+  - uid: string
+- name: recommendationId
+  in: path
+  isRequired: true
+  types:
+  - uid: string
+- name: name
+  in: path
+  isRequired: true
+  types:
+  - uid: string
+- name: api-version
+  in: query
+  isRequired: true
+  types:
+  - uid: string
+responses:
+- name: 200 OK
+  types:
+  - uid: SuppressionContract
+requestBody:
+- parameters:
+  - name: properties.suppressionId
+    in: body
+    description: "  \nThe GUID of the suppression."
+    types:
+    - uid: string
+  - name: properties.ttl
+    in: body
+    description: "  \nThe duration for which the suppression is valid."
+    types:
+    - uid: string
+requestHeader: []
+definitions:
+- name: SuppressionContract
+  kind: object
+  properties:
+  - name: properties.suppressionId
+    types:
+    - uid: string
+  - name: properties.ttl
+    types:
+    - uid: string
+  - name: id
+    isReadyOnly: true
+    types:
+    - uid: string
+  - name: name
+    isReadyOnly: true
+    types:
+    - uid: string
+  - name: type
+    isReadyOnly: true
+    types:
+    - uid: string
+examples:
+- name: CreateSuppression
+  request:
+    uri: PUT https://management.azure.com/resourceUri/providers/Microsoft.Advisor/recommendations/recommendationId/suppressions/suppressionName1?api-version=2017-03-31
+    body: >-
+      {
+        "id": "/resourceUri/providers/Microsoft.Advisor/recommendations/recommendationId/suppressions/suppressionName1",
+        "name": "suppressionName1",
+        "type": "Microsoft.Advisor/suppressions",
+        "properties": {
+          "ttl": "07:00:00:00"
+        }
+      }
+  responses:
+  - statusCode: "200"
+    body: >-
+      {
+        "id": "/resourceUri/providers/Microsoft.Advisor/recommendations/recommendationId/suppressions/suppressionName1",
+        "name": "suppressionName1",
+        "type": "Microsoft.Advisor/suppressions",
+        "properties": {
+          "suppressionId": "suppresionId",
+          "ttl": "07:00:00:00"
+        }
+      }
+security:
+- type: oauth2
+  description: Azure Active Directory OAuth2 Flow.
+  flow: implicit
+  authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+  scopes:
+  - name: user_impersonation
+    description: impersonate your user account

@@ -2,35 +2,121 @@
   "build": {
     "content": [
       {
+        "src":"docs-ref-autogen",
         "files": [
-          "**/*.md"
+          "advisor/Operations.yml"
         ],
         "exclude": [
-          "**/obj/**",
-          "**/includes/**",
-          "README.md",
-          "LICENSE",
-          "LICENSE-CODE"
-        ]
-      }
-    ],
-    "resource": [
+        ],
+        "dest":"api"
+      },
       {
         "files": [
-          "**/*.png",
-          "**/*.jpg"
-        ],
-        "exclude": [
-          "**/obj/**",
-          "**/includes/**"
+          "breadcrumb/toc.yml"
         ]
       }
     ],
-    "overwrite": [],
     "externalReference": [],
-    "globalMetadata": {},
-    "fileMetadata": {},
-    "template": [],
-    "dest": "main_docset"
+    "globalMetadata": {
+      "_gitContribute": {
+        "apiSpecFolder": "docs-ref-overwrite"
+      },
+      "_mockServerUrl": "https://apiexproxy.azurewebsites.net/svc",
+      "_mockServerAuthorization": "Bearer {token:https://graph.windows.net/}",
+      "breadcrumb_path": "~/breadcrumb/toc.yml",
+      "author": "erickson-doug",
+      "ms.author": "douge",
+      "manager": "douge",
+      "ms.topic": "reference",
+      "ms.devlang": "rest-api",
+      "ms.date": "11/16/2016",
+      "brand": "azure",
+      "searchScope": ["Azure"],
+      "_op_documentIdPathDepotMapping": {
+        "docs-ref-conceptual/": {
+          "folder_relative_path_in_docset": "documentation"
+        },
+        "docs-ref-autogen/": {
+          "folder_relative_path_in_docset": "api-ref"
+        },
+        "docs-ref-overwrite/": {
+          "folder_relative_path_in_docset": "api-doc"
+        },
+        "readme-csi/": {
+        },
+        "./": {
+           "folder_relative_path_in_docset": "api-index"
+        },
+        "docs-ref-conceptual/billing/enterprise/": {
+          "folder_relative_path_in_docset": "articles/billing",
+          "depot_name": "Azure.azure-documents"
+        }
+      }
+    },
+    "fileMetadata": {
+      "ms.service": 
+      {
+        "docs-ref-autogen/advisor/**.yml": "advisor",
+        "docs-ref-autogen/analysisservices/**.yml": "analysis-services",
+        "docs-ref-autogen/apimanagement/**.yml": "api-management",
+        "docs-ref-autogen/applicationGateway/**.yml": "application-gateway",
+        "docs-ref-autogen/appservice/**.yml": "websites",
+        "docs-ref-conceptual/applicationgateway/**.md": "application-gateway",
+        "docs-ref-autogen/authorization/**.yml": "azure-resource-manager",
+        "docs-ref-autogen/BatchManagement/**.yml": "batch",
+        "docs-ref-autogen/BatchService/**.yml": "batch",
+        "docs-ref-conceptual/job/**.md": "data-lake-analytics",
+        "docs-ref-conceptual/catalog/**.md": "data-lake-analytics",
+        "docs-ref-autogen/datalakeanalytics/**.yml": "data-lake-analytics",
+        "docs-ref-autogen/cdn/**.yml": "cdn",
+        "docs-ref-autogen/cognitiveservices/**.yml": "cognitive-services",
+        "docs-ref-autogen/billing/**.yml": "billing",
+        "docs-ref-autogen/containerregistry/**.yml": "container-registry",
+        "docs-ref-autogen/compute/**.yml": "cloud-services",
+        "docs-ref-autogen/datalakestore/**.yml": "data-lake-store",
+        "docs-ref-autogen/dns/**.yml": "dns",
+        "docs-ref-autogen/DTL/**.yml": "devtest-lab",
+        "docs-ref-autogen/documentdb/**.yml": "documentdb",
+        "docs-ref-autogen/eventhub/**.yml": "event-hubs",
+        "docs-ref-conceptual/ExpressRoute/**.md": "Express-Route",
+        "docs-ref-autogen/graphrbac/**.yml": "graphrbac",
+        "docs-ref-autogen/insights/**.yml": "insights",
+        "docs-ref-autogen/intune/**.yml": "microsoft-intune",
+        "docs-ref-autogen/iothub/**.yml": "iot-hub",
+        "docs-ref-autogen/keyvault/**.yml": "key-vault",
+        "docs-ref-conceptual/loadbalancer/**.md": "load-balancer",
+        "docs-ref-autogen/logic/**.yml": "app-service-logic",
+        "docs-ref-autogen/loganalytics/**.yml": "log-analytics",
+        "docs-ref-autogen/machineLearning/**.yml": "machine-learning",
+        "docs-ref-conceptual/manageddisks/**.md": "managed-disks",
+        "docs-ref-autogen/media/**.yml": "media-services",
+        "docs-ref-conceptual/network/**.md": "network",
+        "docs-ref-autogen/network/**.yml": "network",
+        "docs-ref-conceptual/networkgateway/**.md": "Network-Gateway",
+        "docs-ref-conceptual/networkwatcher/**.md": "Network-Watcher",
+        "docs-ref-autogen/notificationhubs/**.yml": "notification-hubs",
+        "docs-ref-autogen/powerbiembedded/**.yml": "power-bi-embedded",
+        "docs-ref-autogen/recoveryservices/**.yml": "backup",
+        "docs-ref-autogen/redis/**.yml": "redis-cache",
+        "docs-ref-autogen/resources/**.yml": "azure-resource-manager",
+        "docs-ref-autogen/scheduler/**.yml": "scheduler",
+        "docs-ref-autogen/search/**.yml": "search",
+        "docs-ref-autogen/servicebus/**.yml": "service-bus",
+        "docs-ref-autogen/servicefabric/**.yml": "service-fabric",
+        "docs-ref-autogen/servicemap/**.yml": "service-map",
+        "docs-ref-autogen/sql/**.yml": "sql-database",
+        "docs-ref-autogen/storage/**.yml": "storage",
+        "docs-ref-autogen/storageservices/**.yml": "storage",
+        "docs-ref-conceptual/trafficmanager/**.md": "Traffic-Manager",
+        "docs-ref-conceptual/virtualmachinescalesets/**.md": "virtual-machine-scale-sets"
+
+        }
+    },
+    "template": [
+      "docs.html"
+    ],
+    "exportRawModel": true,
+    "markdownEngineName": "markdig",
+    "dest": "rest"
   }
 }

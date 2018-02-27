@@ -1,0 +1,10 @@
+### YamlMime:RESTOperationGroupV3
+uid: management.azure.com.advisor.recommendations
+name: Recommendations
+apiVersion: 2017-03-31
+service: Advisor
+operations:
+- uid: management.azure.com.advisor.recommendations.generate
+- uid: management.azure.com.advisor.recommendations.get
+- uid: management.azure.com.advisor.recommendations.getgeneratestatus
+- uid: management.azure.com.advisor.recommendations.list

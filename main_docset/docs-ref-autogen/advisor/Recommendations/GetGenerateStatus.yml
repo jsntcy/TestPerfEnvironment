@@ -1,0 +1,43 @@
+### YamlMime:RESTOperationV3
+uid: management.azure.com.advisor.recommendations.getgeneratestatus
+name: Get Generate Status
+service: Advisor
+groupName: Recommendations
+apiVersion: 2017-03-31
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+- content: GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Advisor/generateRecommendations/{operationId}?api-version=2017-03-31
+uriParameters:
+- name: subscriptionId
+  in: path
+  isRequired: true
+  types:
+  - uid: string
+- name: operationId
+  in: path
+  isRequired: true
+  types:
+  - uid: string
+  format: uuid
+- name: api-version
+  in: query
+  isRequired: true
+  types:
+  - uid: string
+responses:
+- name: 202 Accepted
+- name: 204 No Content
+requestHeader: []
+definitions: []
+examples: []
+security:
+- type: oauth2
+  description: Azure Active Directory OAuth2 Flow.
+  flow: implicit
+  authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+  scopes:
+  - name: user_impersonation
+    description: impersonate your user account

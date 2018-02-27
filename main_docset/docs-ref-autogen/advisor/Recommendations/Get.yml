@@ -1,0 +1,164 @@
+### YamlMime:RESTOperationV3
+uid: management.azure.com.advisor.recommendations.get
+name: Get
+service: Advisor
+groupName: Recommendations
+apiVersion: 2017-03-31
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+- content: GET https://management.azure.com/{resourceUri}/providers/Microsoft.Advisor/recommendations/{recommendationId}?api-version=2017-03-31
+uriParameters:
+- name: resourceUri
+  in: path
+  isRequired: true
+  types:
+  - uid: string
+- name: recommendationId
+  in: path
+  isRequired: true
+  types:
+  - uid: string
+- name: api-version
+  in: query
+  isRequired: true
+  types:
+  - uid: string
+responses:
+- name: 200 OK
+  types:
+  - uid: ResourceRecommendationBase
+requestHeader: []
+definitions:
+- name: ResourceRecommendationBase
+  kind: object
+  properties:
+  - name: properties.category
+    types:
+    - uid: category
+  - name: properties.impact
+    types:
+    - uid: impact
+  - name: properties.impactedField
+    types:
+    - uid: string
+  - name: properties.impactedValue
+    types:
+    - uid: string
+  - name: properties.lastUpdated
+    types:
+    - uid: string
+  - name: properties.metadata
+    types:
+    - uid: object
+      isDictionary: true
+      additionalTypes:
+      - uid: string
+      - uid: object
+  - name: properties.recommendationTypeId
+    types:
+    - uid: string
+  - name: properties.risk
+    types:
+    - uid: risk
+  - name: properties.shortDescription
+    types:
+    - uid: ShortDescription
+  - name: properties.suppressionIds
+    types:
+    - uid: string
+      isArray: true
+  - name: id
+    isReadyOnly: true
+    types:
+    - uid: string
+  - name: name
+    isReadyOnly: true
+    types:
+    - uid: string
+  - name: type
+    isReadyOnly: true
+    types:
+    - uid: string
+- name: category
+  kind: enum
+  properties:
+  - name: HighAvailability
+    types:
+    - uid: string
+  - name: Security
+    types:
+    - uid: string
+  - name: Performance
+    types:
+    - uid: string
+  - name: Cost
+    types:
+    - uid: string
+- name: impact
+  kind: enum
+  properties:
+  - name: High
+    types:
+    - uid: string
+  - name: Medium
+    types:
+    - uid: string
+  - name: Low
+    types:
+    - uid: string
+- name: risk
+  kind: enum
+  properties:
+  - name: Error
+    types:
+    - uid: string
+  - name: Warning
+    types:
+    - uid: string
+  - name: None
+    types:
+    - uid: string
+- name: ShortDescription
+  kind: object
+  properties:
+  - name: problem
+    types:
+    - uid: string
+  - name: solution
+    types:
+    - uid: string
+examples:
+- name: GetRecommendationDetail
+  request:
+    uri: GET https://management.azure.com/resourceUri/providers/Microsoft.Advisor/recommendations/recommendationId?api-version=2017-03-31
+  responses:
+  - statusCode: "200"
+    body: >-
+      {
+        "id": "/resourceUri/providers/Microsoft.Advisor/recommendations/recommendationId",
+        "name": "recommendationId",
+        "properties": {
+          "category": "HighAvailability",
+          "impact": "Medium",
+          "impactedField": "Microsoft.Compute/availabilitySets",
+          "impactedValue": "armavset",
+          "lastUpdated": "2017-02-24T22:24:43.3216408Z",
+          "risk": "Warning",
+          "shortDescription": {
+            "problem": "This availability set is not configured for fault tolerance",
+            "solution": "To ensure high availability add one or more virtual machines to this availability set"
+          }
+        },
+        "type": "Microsoft.Advisor/recommendations"
+      }
+security:
+- type: oauth2
+  description: Azure Active Directory OAuth2 Flow.
+  flow: implicit
+  authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+  scopes:
+  - name: user_impersonation
+    description: impersonate your user account

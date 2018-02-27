@@ -1,0 +1,10 @@
+### YamlMime:RESTOperationGroupV3
+uid: management.azure.com.advisor.suppressions
+name: Suppressions
+apiVersion: 2017-03-31
+service: Advisor
+operations:
+- uid: management.azure.com.advisor.suppressions.create
+- uid: management.azure.com.advisor.suppressions.delete
+- uid: management.azure.com.advisor.suppressions.get
+- uid: management.azure.com.advisor.suppressions.list

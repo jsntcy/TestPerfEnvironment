@@ -13,9 +13,15 @@
       "type_mapping": {
         "Conceptual": "Content",
         "ManagedReference": "Content",
-        "RestApi": "Content"
+        "RESTOperation": "Content",
+        "RESTOperationGroup": "Content",
+        "RESTOperationV3": "Content",
+        "RESTOperationGroupV3": "Content"
       },
       "build_entry_point": "docs",
+      "customized_template_paths": [
+        "templates"
+      ],
       "template_folder": "_themes"
     }
   ],
@@ -26,6 +32,12 @@
     {
       "path_to_root": "_themes",
       "url": "https://github.com/Microsoft/templates.docs.msft",
+      "branch": "master",
+      "branch_mapping": {}
+    },
+    {
+      "path_to_root": "AzureRestApi/swagger/source",
+      "url": "https://github.com/Azure/azure-rest-api-specs",
       "branch": "master",
       "branch_mapping": {}
     }

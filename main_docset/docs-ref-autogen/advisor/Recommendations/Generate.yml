@@ -1,0 +1,51 @@
+### YamlMime:RESTOperationV3
+uid: management.azure.com.advisor.recommendations.generate
+name: Generate
+service: Advisor
+groupName: Recommendations
+apiVersion: 2017-03-31
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+- content: POST https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Advisor/generateRecommendations?api-version=2017-03-31
+uriParameters:
+- name: subscriptionId
+  in: path
+  isRequired: true
+  types:
+  - uid: string
+- name: api-version
+  in: query
+  isRequired: true
+  types:
+  - uid: string
+responses:
+- name: 202 Accepted
+  headers:
+  - name: Location
+    value: string
+  - name: Retry-After
+    value: string
+requestHeader: []
+definitions: []
+examples:
+- name: GenerateRecommendations
+  request:
+    uri: POST https://management.azure.com/subscriptions/subscriptionId/providers/Microsoft.Advisor/generateRecommendations?api-version=2017-03-31
+  responses:
+  - statusCode: "202"
+    headers:
+    - name: Location
+      value: https://management.azure.com/subscriptions/subscriptionId/providers/Microsoft.Microsoft.Advisor/generateRecommendations/recGUID?api-version=2017-03-31
+    - name: Retry-After
+      value: "60"
+security:
+- type: oauth2
+  description: Azure Active Directory OAuth2 Flow.
+  flow: implicit
+  authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+  scopes:
+  - name: user_impersonation
+    description: impersonate your user account

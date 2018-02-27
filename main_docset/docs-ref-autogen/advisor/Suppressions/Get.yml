@@ -1,0 +1,84 @@
+### YamlMime:RESTOperation
+uid: management.azure.com.advisor.suppressions.get
+name: Get
+service: Advisor
+groupName: Suppressions
+apiVersion: 2017-03-31
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+- content: GET https://management.azure.com/{resourceUri}/providers/Microsoft.Advisor/recommendations/{recommendationId}/suppressions/{name}?api-version=2017-03-31
+uriParameters:
+- name: resourceUri
+  in: path
+  isRequired: true
+  types:
+  - uid: string
+- name: recommendationId
+  in: path
+  isRequired: true
+  types:
+  - uid: string
+- name: name
+  in: path
+  isRequired: true
+  types:
+  - uid: string
+- name: api-version
+  in: query
+  isRequired: true
+  types:
+  - uid: string
+responses:
+- name: 200 OK
+  types:
+  - uid: SuppressionContract
+requestHeader: []
+definitions:
+- name: SuppressionContract
+  kind: object
+  properties:
+  - name: properties.suppressionId
+    types:
+    - uid: string
+  - name: properties.ttl
+    types:
+    - uid: string
+  - name: id
+    isReadyOnly: true
+    types:
+    - uid: string
+  - name: name
+    isReadyOnly: true
+    types:
+    - uid: string
+  - name: type
+    isReadyOnly: true
+    types:
+    - uid: string
+examples:
+- name: GetSuppressionDetail
+  request:
+    uri: GET https://management.azure.com/resourceUri/providers/Microsoft.Advisor/recommendations/recommendationId/suppressions/suppressionName1?api-version=2017-03-31
+  responses:
+  - statusCode: "200"
+    body: >-
+      {
+        "id": "/resourceUri/providers/Microsoft.Advisor/recommendations/recommendationId/suppressions/suppressionName1",
+        "name": "suppressionName1",
+        "type": "Microsoft.Advisor/suppressions",
+        "properties": {
+          "suppressionId": "suppressionId1",
+          "ttl": "7.00:00:00"
+        }
+      }
+security:
+- type: oauth2
+  description: Azure Active Directory OAuth2 Flow.
+  flow: implicit
+  authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+  scopes:
+  - name: user_impersonation
+    description: impersonate your user account

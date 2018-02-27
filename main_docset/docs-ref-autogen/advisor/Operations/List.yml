@@ -1,0 +1,67 @@
+### YamlMime:RESTOperationV3
+uid: management.azure.com.advisor.operations.list
+name: List
+service: Advisor
+groupName: Operations
+apiVersion: 2017-03-31
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+- content: GET https://management.azure.com/providers/Microsoft.Advisor/operations?api-version=2017-03-31
+uriParameters:
+- name: api-version
+  in: query
+  isRequired: true
+  types:
+  - uid: string
+responses:
+- name: 200 OK
+  types:
+  - uid: OperationEntityListResult
+requestHeader: []
+definitions:
+- name: OperationEntityListResult
+  kind: object
+  properties:
+  - name: nextLink
+    types:
+    - uid: string
+  - name: value
+    types:
+    - uid: OperationEntity
+      isArray: true
+- name: OperationEntity
+  kind: object
+  properties:
+  - name: name
+    types:
+    - uid: string
+  - name: display
+    types:
+    - uid: OperationDisplayInfo
+- name: OperationDisplayInfo
+  kind: object
+  properties:
+  - name: description
+    types:
+    - uid: string
+  - name: operation
+    types:
+    - uid: string
+  - name: provider
+    types:
+    - uid: string
+  - name: resource
+    types:
+    - uid: string
+examples: []
+security:
+- type: oauth2
+  description: Azure Active Directory OAuth2 Flow.
+  flow: implicit
+  authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+  scopes:
+  - name: user_impersonation
+    description: impersonate your user account
