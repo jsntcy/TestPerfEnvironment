@@ -1,0 +1,40 @@
+<h1>{{name}}</h1>
+
+<div class="metadata" ms.cmpgrp="page info" data-bi-name="page info">
+	{{#service}}
+		<dl class="attributeList">
+			<dt>Service:</dt>
+			<dd>
+				<xref uid="{{ service }}" />
+			</dd>
+		</dl>
+	{{/service}}
+	{{#apiVersion}}
+		<dl class="attributeList">
+			<dt>API Version:</dt>
+			<dd>
+				{{apiVersion}}
+			</dd>
+		</dl>
+	{{/apiVersion}}
+</div>
+
+{{{ summary }}}
+
+{{>partials/docOutline}}
+
+{{#operations.0}}
+	<h2>Operations</h2>
+	<table class="nameValue">
+		{{#operations}}
+		<tr>
+			<td>
+				<xref uid="{{ uid }}" />
+			</td>
+			<td>
+				{{{ summary }}}
+			</td>
+		</tr>
+		{{/operations}}
+	</table>
+{{/operations.0}}

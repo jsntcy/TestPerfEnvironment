@@ -1,0 +1,258 @@
+<h1>{{ groupName }} - {{name}}</h1>
+
+<div class="metadata" ms.cmpgrp="page info" data-bi-name="page info">
+	{{#service}}
+		<dl class="attributeList">
+			<dt>Service:</dt>
+			<dd>
+				<xref uid="{{ service }}" />
+			</dd>
+		</dl>
+	{{/service}}
+	{{#apiVersion}}
+		<dl class="attributeList">
+			<dt>API Version:</dt>
+			<dd>
+				{{apiVersion}}
+			</dd>
+		</dl>
+	{{/apiVersion}}
+</div>
+
+{{>partials/rest/preview}}
+
+{{#isDeprecated}}
+	<div class="warning alert">
+		{{{__global.warning}}}
+		<p>{{__global.deprecated}}</p>
+	</div>
+{{/isDeprecated}}
+
+{{{ summary }}}
+
+{{>partials/docOutline}}
+
+{{{ remarks }}}
+
+{{#paths}}
+	{{#isOptional}}
+		<div class="example-block">
+			<div class="metadata">
+				With optional parameters:
+			</div>
+	{{/isOptional}}
+	<pre class="wrap"><code class="lang-http" dir="ltr">{{ content }}</code></pre>
+	{{#isOptional}}
+		</div>
+	{{/isOptional}}
+{{/paths}}
+
+{{#uriParameters.0}}
+	<h2>URI Parameters</h2>
+	<table class="parameters">
+		<tr>
+			<th>Name</th>
+			<th>In</th>
+			<th>Required</th>
+			<th>Type</th>
+			<th>Description</th>
+		</tr>
+		{{#uriParameters}}
+			<tr>
+				<td>
+					<div class="parameterName">{{name}}</div>
+				</td>
+				<td>{{in}}</td>
+				<td>
+					{{#isRequired}}
+						{{isRequired}}
+					{{/isRequired}}
+				</td>
+				<td>
+					{{>partials/rest/typeList}}
+				</td>
+				<td>
+					{{{description}}}
+					{{#pattern}}
+						<p>Regex pattern: <code>{{pattern}}</code></p>
+					{{/pattern}}
+				</td>
+			</tr>
+		{{/uriParameters}}
+	</table>
+{{/uriParameters.0}}
+
+{{#requestHeader.0}}
+	<h2>Request Headers</h2>
+	{{#consumesMediaTypes}}
+		<p>{{consumesMediaTypes}}<p>
+	{{/consumesMediaTypes}}
+	<table class="parameters request">
+		<tr>
+			<th>Name</th>
+			<th>Required</th>
+			<th>Type</th>
+			<th>Description</th>
+		</tr>
+		{{#requestHeader}}
+			{{>partials/rest/requestTable}}
+		{{/requestHeader}}
+	</table>
+{{/requestHeader.0}}
+
+{{#requestBody.0}}
+	<h2>Request Body</h2>
+	{{#consumesMediaTypes}}
+		<p>{{consumesMediaTypes}}<p>
+	{{/consumesMediaTypes}}
+	{{#showRequestBodiesTable}}
+		<p>{{__global.requestBodyCanBeFollowing}}</p>
+		<table class="parameters">
+			<tr>
+				<th>Name</th>
+				<th>Description</th>
+			</tr>
+			{{#requestBody}}
+				<tr>
+					<td>
+						{{{tableNameHTML}}}
+					</td>
+					<td>
+						{{{description}}}
+					</td>
+				</tr>
+			{{/requestBody}}
+		</table>
+	{{/showRequestBodiesTable}}
+	{{#requestBody}}
+		<h3 id="{{htmlID}}">{{ name }}</h3>
+		{{{description}}}
+		<table class="parameters">
+			<tr>
+				<th>Name</th>
+				<th>Required</th>
+				<th>Type</th>
+				<th>Description</th>
+			</tr>
+			{{#parameters}}
+				{{>partials/rest/requestTable}}
+			{{/parameters}}
+		</table>
+	{{/requestBody}}
+{{/requestBody.0}}
+
+{{#responses.0}}
+	<h2>Responses</h2>
+	<table class="parameters definitions">
+		<tr>
+			<th>Name</th>
+			<th>Type</th>
+			<th>Description</th>
+		</tr>
+		{{#responses}}
+			{{>partials/rest/propertyTable}}
+		{{/responses}}
+	</table>
+{{/responses.0}}
+
+{{#examples.0}}
+	<h2>Examples</h2>
+	{{#showExamplesTable}}
+		<table class="nameValue">
+			{{#examples}}
+				<tr>
+					<td>
+						{{{tableNameHTML}}}
+					</td>
+				</tr>
+			{{/examples}}
+		</table>
+	{{/showExamplesTable}}
+	{{#examples}}
+		{{#name}}
+			<h3 id="{{htmlID}}">{{ name }}</h3>
+		{{/name}}
+		<div class="example-block">
+			<h4>Sample Request</h4>
+			{{#request}}
+				{{#headerStr}}
+					<pre class="wrap"><code class="lang-http" dir="ltr">{{{headerStr}}}</code></pre>
+				{{/headerStr}}
+				{{#body}}
+					<div class="metadata halfStack">
+						<dl class="attributeList">
+							<dt>Request Body</dt><dd></dd>
+						</dl>
+					</div>
+					<pre><code class="lang-json" dir="ltr">{{{ body }}}</code></pre>
+				{{/body}}
+			{{/request}}
+		</div>
+		{{#responses.0}}
+			<div class="example-block">
+				<h4>Sample Response</h4>
+				{{#responses}}
+					<div class="metadata{{ className }}">
+						{{#statusCode}}
+							<dl class="attributeList">
+								<dt>Status code: </dt>
+								<dd>
+									{{statusCode}}
+								</dd>
+							</dl>
+						{{/statusCode}}
+					</div>
+					{{#headerStr}}
+						<pre class="wrap"><code class="lang-http" dir="ltr">{{{headerStr}}}</code></pre>
+					{{/headerStr}}
+					{{#body}}
+						{{#headerStr}}
+							<div class="metadata halfStack">
+								<dl class="attributeList">
+									<dt>Response Body</dt><dd></dd>
+								</dl>
+							</div>
+						{{/headerStr}}
+						<pre><code class="lang-json" dir="ltr">{{{ body }}}</code></pre>
+					{{/body}}
+				{{/responses}}
+			</div>
+		{{/responses.0}}
+	{{/examples}}
+{{/examples.0}}
+
+{{#definitions.0}}
+	<h2>Definitions</h2>
+	{{#showDefinitionsTable}}
+		<table class="nameValue">
+			{{#definitions}}
+				<tr>
+					<td>
+						{{{tableNameHTML}}}
+					</td>
+					<td>
+						{{{description}}}
+					</td>
+				</tr>
+			{{/definitions}}
+		</table>
+	{{/showDefinitionsTable}}
+	{{#definitions}}
+		<h3><a id="{{htmlID}}"></a>{{name}}</h3>
+		{{{ description }}}
+		{{#properties.0}}
+			<table class="parameters definitions{{^hasType}} no-type{{/hasType}}">
+				<tr>
+					<th>Name</th>
+					{{#hasType}}
+						<th>Type</th>
+					{{/hasType}}
+					<th>Description</th>
+				</tr>
+				{{#properties}}
+					{{>partials/rest/propertyTable}}
+				{{/properties}}
+			</table>
+		{{/properties.0}}
+	{{/definitions}}
+{{/definitions.0}}
